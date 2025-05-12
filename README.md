@@ -1,42 +1,97 @@
-# Emotion Detection - Naan Mudhalvan Project
+## 😄 Emotion Recognition from Facial Expressions and Voice Tone
+## 📝 Introduction
+This project focuses on recognizing emotions from facial expressions in images and voice tone in audio files. It uses OpenCV for facial emotion detection, Whisper for speech recognition, and machine learning models for voice emotion classification. The goal is to demonstrate how computer vision and audio analysis can be integrated to create an emotion-aware system.
 
-This project is developed as part of the **Naan Mudhalvan** skill development program under the subject **OpenCV**. It aims to detect human emotions from **facial images** using machine learning and computer vision techniques.
+This project was developed using Google Colab for easy setup and execution.
 
-##  Introduction
+## ⚙️ How the Project Works
+## 🖼️ Face Emotion Detection
+## Face Detection:
+Uses OpenCV’s Haar cascade classifier to detect faces in an image.
 
-Emotion detection is a powerful application of artificial intelligence that analyzes **facial expressions** to classify emotions such as happiness, sadness, anger, fear, and more. This project processes facial images, detects facial features using OpenCV, and uses a trained machine learning model to predict the emotional state.
+## Emotion Classification:
+A pre-trained mini XCEPTION model is used to classify the detected face's emotion into one of these categories: Angry, Disgust, Fear, Happy, Sad, Surprise, Neutral.
 
+## 🎤 Voice Emotion Detection
+## Audio Preprocessing:
+Extracts MFCC (Mel-frequency cepstral coefficients) and pitch features from the uploaded audio file using Librosa.
 
-##  Project Structure
+## Emotion Classification: 
+A dummy classifier is used to classify the emotion (happy, sad, angry, neutral) based on the extracted features.
 
-* `Project1.ipynb` – Main Jupyter Notebook containing all code for image processing, face detection, feature extraction, and emotion classification.
-* `README.md` – Project documentation.
+## Speech Recognition: 
+Whisper transcribes the audio to text and detects the language used in the speech.
 
-## Technologies Used
+## 🔧 Installation & Setup
+Before running the code, you need to install the necessary dependencies:
 
-* Python
-* Google Colab
-* OpenCV (image processing and face detection)
-* Scikit-learn (ML models)
-* NumPy & Pandas (data handling)
-* Matplotlib (visualization)
+## Install Dependencies
+!pip install -q keras opencv-python librosa moviepy openai-whisper pydub ffmpeg-python
+## Download Pre-trained Model
+bash
+Copy
+Edit
+!wget -q https://github.com/oarriaga/face_classification/raw/master/trained_models/emotion_models/fer2013_mini_XCEPTION.102-0.66.hdf5 -O emotion_model.h5
+⚡ Running the Project in Google Colab
+Open the notebook in Google Colab.
 
-## How to Run
+Install dependencies and download the pre-trained face emotion model.
 
-1. Open the project in Google Colab:
+Upload either:
 
-   * [Click here to open in Colab](https://colab.research.google.com/github/SharamRiyaA/Emotion-Detection/blob/main/Project1.ipynb)
+An image file to detect facial emotions, or
 
-2. Make sure to upload or connect necessary image files as needed.
+An audio file (MP3, MP4, WAV, or other supported formats) to detect voice emotions and transcribe the speech.
 
-3. Run all cells in the notebook to detect emotions from facial images.
+The code will automatically run, and you will get:
 
-## Future Enhancements
+Detected facial emotion from the image (if an image is uploaded).
 
-* Improve accuracy with a larger and more diverse image dataset.
-* Add support for real-time webcam-based emotion detection.
-* Integrate the model into a web or mobile interface.
+Detected voice emotion and transcription (if an audio file is uploaded).
 
-## License
+## 🧰 Technologies Used
+Python
 
-This project is for educational purposes under the Naan Mudhalvan initiative.
+OpenCV: Used for detecting faces in images.
+
+Keras: For loading the pre-trained emotion detection model.
+
+Whisper: OpenAI’s model for automatic speech recognition (ASR).
+
+Librosa: For audio feature extraction (MFCC, pitch).
+
+pydub: To convert audio files to WAV format for consistent processing.
+
+SVC (Support Vector Classifier): Used for training and classifying voice emotions.
+
+## 🧑‍💻 How It Works
+## 1. Face Emotion Detection:
+The uploaded image is processed to detect faces using Haar cascade.
+
+A mini XCEPTION model (pre-trained on the FER-2013 dataset) is used to classify the emotion of the face in the image.
+
+The emotion is displayed on the image with a bounding box around the face.
+
+## 2. Voice Emotion Detection:
+Audio is pre-processed to extract MFCC and pitch features.
+
+The extracted features are classified using a dummy SVC model.
+
+The audio is transcribed to text using Whisper, and the detected emotion and language of the audio are displayed.
+
+## 3. Universal Audio Converter:
+If an audio file is uploaded in any format other than WAV, it is converted to WAV using pydub for consistent processing.
+
+## 💻 Sample Output
+When uploading an image:
+🎭 Detecting Facial Emotion...
+Facial Emotion Detected: Happy
+When uploading an audio file:
+🎤 Detecting Voice Emotion...
+Voice Emotion Detected: Happy
+Speech Transcription: I am feeling great today!
+Language Detected: en
+## 🏁 Conclusion
+This project demonstrates how to recognize emotions from both facial expressions and voice tone using computer vision and audio processing. It uses advanced models like Whisper for speech recognition and a pre-trained neural network for facial emotion detection, making it a useful tool for emotion-aware applications.
+
+The integration of face and voice emotion detection makes this project versatile, with potential applications in security systems, customer feedback analysis, virtual assistants, and more.
